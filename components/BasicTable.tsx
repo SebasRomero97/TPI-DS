@@ -28,6 +28,7 @@ const BasicTable = ({ items = initialValues }: Props) => {
   const [sortColumn, setSortColumn] = useState<'id' | 'name' | 'presentation' | 'quantity' | 'expiration' | 'status' | null>(null);
   const [sortAsc, setSortAsc] = useState(true);
   const [page, setPage] = useState(0);
+  const [bandera, setBandera] = useState(true)
   const itemsPerPage = 8; //paginas
 
   // Filtrar usuarios
@@ -46,6 +47,7 @@ const BasicTable = ({ items = initialValues }: Props) => {
   const sortBy = (column: 'id' | 'name' | 'presentation' | 'quantity' | 'expiration' | 'status') => {
     setSortAsc(sortColumn === column ? !sortAsc : true);
     setSortColumn(column);
+    setBandera(false) //esta bandera es para que muestre el simbolo de sort en la tabla solo la primera vez.
   };
 
 
@@ -68,7 +70,7 @@ const BasicTable = ({ items = initialValues }: Props) => {
       <DataTable>
         <DataTable.Header>
           <DataTable.Title //Titulo de la columna
-            sortDirection={sortColumn === 'id' ? (sortAsc ? 'ascending' : 'descending') : undefined}
+            sortDirection={sortColumn === 'id' ? (sortAsc ? 'ascending' : 'descending') : (bandera ? 'descending' : undefined)}
             onPress={() => sortBy('id')}
           >
             ID
