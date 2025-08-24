@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { TextInput, View } from 'react-native';
-import { DataTable } from 'react-native-paper';
+import { View } from 'react-native';
+import { DataTable, TextInput } from 'react-native-paper';
 import { useSortedData } from './useSortDataForDataTable';
 
 
 const initialValues = [
   { id: 1, name: 'Paracetamol', presentation: 'Comprimidos', quantity: 120, expiration: '12/2025', status: 'Disponible' },
 ];
-// 
+
   
 type User = {
   id: number;
@@ -29,17 +29,17 @@ const BasicTable = ({ items = initialValues }: Props) => {
   const [sortAsc, setSortAsc] = useState(true);
   const [page, setPage] = useState(0);
   const [bandera, setBandera] = useState(true)
-  const itemsPerPage = 8; //paginas
+  const itemsPerPage = 8; 
 
-  // Filtrar usuarios
+   
   const filteredUsers = items.filter((user) =>
     `${user.id} ${user.name} ${user.presentation} ${user.quantity} ${user.expiration} ${user.status}`.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Hook ordenador
+   
   const sortedUsers = useSortedData(filteredUsers, sortColumn, sortAsc);
 
-  // Paginación
+  
   const from = page * itemsPerPage;
   const to = Math.min((page + 1) * itemsPerPage, sortedUsers.length);
   const paginatedUsers = sortedUsers.slice(from, to);
@@ -47,64 +47,66 @@ const BasicTable = ({ items = initialValues }: Props) => {
   const sortBy = (column: 'id' | 'name' | 'presentation' | 'quantity' | 'expiration' | 'status') => {
     setSortAsc(sortColumn === column ? !sortAsc : true);
     setSortColumn(column);
-    setBandera(false) //esta bandera es para que muestre el simbolo de sort en la tabla solo la primera vez.
+    setBandera(false) 
   };
 
 
   return (
     <View>
-      {/* Barra Buscadora */}
+      
       <TextInput
-        placeholder="Buscar por nombre o email"
+        label="Buscar"
+        mode="outlined"
+        left={<TextInput.Icon icon="magnify" />}
         value={search}
         onChangeText={setSearch}
         style={{
-          margin: 10,
-          padding: 8,
-          borderWidth: 1,
-          borderColor: '#ccc',
-          borderRadius: 6,
+          width: '50%',
+          borderRadius: 215
         }}
       />
 
+
+
+
       <DataTable>
         <DataTable.Header>
-          <DataTable.Title //Titulo de la columna
+          <DataTable.Title 
             sortDirection={sortColumn === 'id' ? (sortAsc ? 'ascending' : 'descending') : (bandera ? 'descending' : undefined)}
             onPress={() => sortBy('id')}
           >
             ID
           </DataTable.Title>
           
-          <DataTable.Title //Titulo de la columna
+          <DataTable.Title 
             sortDirection={sortColumn === 'name' ? (sortAsc ? 'ascending' : 'descending') : undefined}
             onPress={() => sortBy('name')}
           >
             Nombre
           </DataTable.Title>
 
-          <DataTable.Title //Titulo de la columna
+          <DataTable.Title 
             sortDirection={sortColumn === 'presentation' ? (sortAsc ? 'ascending' : 'descending') : undefined}
             onPress={() => sortBy('presentation')}
           >
             Presentacion
           </DataTable.Title>
 
-          <DataTable.Title //Titulo de la columna
+          <DataTable.Title 
             sortDirection={sortColumn === 'quantity' ? (sortAsc ? 'ascending' : 'descending') : undefined}
             onPress={() => sortBy('quantity')}
           >
             Cantidad
           </DataTable.Title>
 
-          <DataTable.Title //Titulo de la columna
+          <DataTable.Title 
             sortDirection={sortColumn === 'expiration' ? (sortAsc ? 'ascending' : 'descending') : undefined}
             onPress={() => sortBy('expiration')}
           >
             Expiracion
           </DataTable.Title>
 
-          <DataTable.Title //Titulo de la columna
+          <DataTable.Title 
             sortDirection={sortColumn === 'status' ? (sortAsc ? 'ascending' : 'descending') : undefined}
             onPress={() => sortBy('status')}
           >
@@ -112,7 +114,7 @@ const BasicTable = ({ items = initialValues }: Props) => {
           </DataTable.Title>
         </DataTable.Header>
 
-        {paginatedUsers.map((user) => ( //Recorre los datos y crea los rows
+        {paginatedUsers.map((user) => ( 
           <DataTable.Row key={user.id}>
             <DataTable.Cell>{user.id}</DataTable.Cell>
             <DataTable.Cell>{user.name}</DataTable.Cell>
@@ -123,7 +125,7 @@ const BasicTable = ({ items = initialValues }: Props) => {
           </DataTable.Row>
         ))}
 
-        <DataTable.Pagination  //Maneja la paginacion solo
+        <DataTable.Pagination
           page={page}
           numberOfPages={Math.ceil(sortedUsers.length / itemsPerPage)}
           onPageChange={setPage}
@@ -136,3 +138,5 @@ const BasicTable = ({ items = initialValues }: Props) => {
 };
 
 export default BasicTable;
+
+
