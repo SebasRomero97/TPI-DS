@@ -3,20 +3,22 @@ import { TextInput, View } from 'react-native';
 import { DataTable } from 'react-native-paper';
 import { useSortedData } from './useSortDataForDataTable';
 
-
 const initialValues = [
-  { id: 1, name: 'Paracetamol', presentation: 'Comprimidos', quantity: 120, expiration: '12/2025', status: 'Disponible' },
+  { id: '1', name: 1, email: 'juan@test.com' },
+  { id: '2', name: 2, email: 'maria@test.com' },
+  { id: '3', name: 3, email: 'pedro@test.com' },
+  { id: '4', name: 14, email: 'ana@test.com' },
+  { id: '5', name: 25, email: 'luis@test.com' },
+  { id: '6', name: 6, email: 'carla@test.com' },
+  { id: '7', name: 7, email: 'miguel@test.com' },
+  { id: '8', name: 8, email: 'sofia@test.com' },
 ];
-// 
+// { id: '001', name: 'Paracetamol', presentation: 'Comprimidos', quantity: 120, expiration: '12/2025', status: 'Disponible' },
   
 type User = {
-  id: number;
-  name: string;
-  presentation: string;
-  quantity: number;
-  expiration: string;
-  status: string;
-
+  id: string;
+  name: number;
+  email: string;
 };
 
 interface Props {
@@ -25,14 +27,14 @@ interface Props {
 
 const BasicTable = ({ items = initialValues }: Props) => {
   const [search, setSearch] = useState('');
-  const [sortColumn, setSortColumn] = useState<'id' | 'name' | 'presentation' | 'quantity' | 'expiration' | 'status' | null>(null);
+  const [sortColumn, setSortColumn] = useState<'name' | 'email' | null>(null);
   const [sortAsc, setSortAsc] = useState(true);
   const [page, setPage] = useState(0);
-  const itemsPerPage = 8; //paginas
+  const itemsPerPage = 3; //paginas
 
   // Filtrar usuarios
   const filteredUsers = items.filter((user) =>
-    `${user.id} ${user.name} ${user.presentation} ${user.quantity} ${user.expiration} ${user.status}`.toLowerCase().includes(search.toLowerCase())
+    `${user.name} ${user.email}`.toLowerCase().includes(search.toLowerCase())
   );
 
   // Hook ordenador
@@ -43,7 +45,7 @@ const BasicTable = ({ items = initialValues }: Props) => {
   const to = Math.min((page + 1) * itemsPerPage, sortedUsers.length);
   const paginatedUsers = sortedUsers.slice(from, to);
 
-  const sortBy = (column: 'id' | 'name' | 'presentation' | 'quantity' | 'expiration' | 'status') => {
+  const sortBy = (column: 'name' | 'email') => {
     setSortAsc(sortColumn === column ? !sortAsc : true);
     setSortColumn(column);
   };
@@ -68,56 +70,24 @@ const BasicTable = ({ items = initialValues }: Props) => {
       <DataTable>
         <DataTable.Header>
           <DataTable.Title //Titulo de la columna
-            sortDirection={sortColumn === 'id' ? (sortAsc ? 'ascending' : 'descending') : undefined}
-            onPress={() => sortBy('id')}
-          >
-            ID
-          </DataTable.Title>
-          
-          <DataTable.Title //Titulo de la columna
             sortDirection={sortColumn === 'name' ? (sortAsc ? 'ascending' : 'descending') : undefined}
             onPress={() => sortBy('name')}
           >
             Nombre
           </DataTable.Title>
-
+          
           <DataTable.Title //Titulo de la columna
-            sortDirection={sortColumn === 'presentation' ? (sortAsc ? 'ascending' : 'descending') : undefined}
-            onPress={() => sortBy('presentation')}
+            sortDirection={sortColumn === 'email' ? (sortAsc ? 'ascending' : 'descending') : undefined}
+            onPress={() => sortBy('email')}
           >
-            Presentacion
-          </DataTable.Title>
-
-          <DataTable.Title //Titulo de la columna
-            sortDirection={sortColumn === 'quantity' ? (sortAsc ? 'ascending' : 'descending') : undefined}
-            onPress={() => sortBy('quantity')}
-          >
-            Cantidad
-          </DataTable.Title>
-
-          <DataTable.Title //Titulo de la columna
-            sortDirection={sortColumn === 'expiration' ? (sortAsc ? 'ascending' : 'descending') : undefined}
-            onPress={() => sortBy('expiration')}
-          >
-            Expiracion
-          </DataTable.Title>
-
-          <DataTable.Title //Titulo de la columna
-            sortDirection={sortColumn === 'status' ? (sortAsc ? 'ascending' : 'descending') : undefined}
-            onPress={() => sortBy('status')}
-          >
-            Estado
+            Email
           </DataTable.Title>
         </DataTable.Header>
 
         {paginatedUsers.map((user) => ( //Recorre los datos y crea los rows
           <DataTable.Row key={user.id}>
-            <DataTable.Cell>{user.id}</DataTable.Cell>
             <DataTable.Cell>{user.name}</DataTable.Cell>
-            <DataTable.Cell>{user.presentation}</DataTable.Cell>
-            <DataTable.Cell>{user.quantity}</DataTable.Cell>
-            <DataTable.Cell>{user.expiration}</DataTable.Cell>
-            <DataTable.Cell>{user.status}</DataTable.Cell>
+            <DataTable.Cell>{user.email}</DataTable.Cell>
           </DataTable.Row>
         ))}
 
