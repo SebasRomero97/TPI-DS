@@ -26,6 +26,8 @@ export default function RootLayout() {
         }}
       >
         <Stack.Screen name="(auth)/index"/>
+        <Stack.Screen name="(drawer)"/>
+
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

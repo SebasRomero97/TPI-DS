@@ -34,10 +34,13 @@ const InicioSesionScreen = () => {
 
   useEffect(() => {
     if (status) {
-      router.push('/(drawer)/dosis')
+      router.replace('/(drawer)/inventario')
     }  
-  
+    
   }, [status])
+  
+  
+  
   
   return (
       <LinearGradient

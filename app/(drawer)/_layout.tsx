@@ -18,18 +18,9 @@ export default function DrawerLayout() {
   
   useEffect(() => {
     if (!status) {
-      router.push('/(auth)')
+    router.replace('/(auth)')
     }
-  
   }, [status])
-  
-
-
-
-
-
-
-
 
 
   return (
@@ -46,21 +37,23 @@ export default function DrawerLayout() {
 }
 
   return (
-      <Drawer
-        drawerContent={(props) => <CustomDrawerContent {...props} />}
-        screenOptions={{
-          drawerType: 'permanent',
-          headerShown: false,
-          drawerActiveTintColor: '#7672ff',
-          drawerStyle: {
-            maxWidth: 240,
-          },
-          drawerLabelStyle: {
-            fontFamily: 'SpaceMono',
-            textAlign: 'center'
-          }
-        }}
-      >
+    
+    <Drawer
+    drawerContent={(props) => <CustomDrawerContent {...props} />}
+    screenOptions={{
+      drawerType: 'permanent',
+      headerShown: false,
+      drawerActiveTintColor: '#7672ff',
+      drawerStyle: {
+        maxWidth: 240,
+      },
+      drawerLabelStyle: {
+        fontFamily: 'SpaceMono',
+        textAlign: 'center'
+      }
+    }}
+    >
+
         {/* <Drawer.Screen name="dashBoard" options={{title: undefined}} /> */}
         <Drawer.Screen name="inventario" options={{title: 'Inventario'}} />
         <Drawer.Screen name="residente" options={{title: 'Residente'}} />
@@ -69,6 +62,7 @@ export default function DrawerLayout() {
         <Drawer.Screen name="tratamientos" options={{title: 'Tratamientos'}} />
         <Drawer.Screen name="dosis" options={{title: 'Dosis'}} />
         <Drawer.Screen name="consulta" options={{title: 'Consulta'}} />
+
         </Drawer>
 
   );
