@@ -100,4 +100,21 @@ export const Historial = [
   { id: 47, name: 'Zolpidem', presentation: 'Comprimidos', quantity: 18, expiration: '10/2025', entry: '12/2025'},
 ]
 
-
+export const Horarios = [
+  {id: 1, hora:'08:00', residente: 'Micaela Torres', medicamento: 'Enalapril', dosis: '10mg', via: 'oral', estado: 'Pendiente'},
+  {id: 2, hora:'08:00', residente: 'Micaela Torres', medicamento: 'Enalapril', dosis: '10mg', via: 'oral', estado: 'Pendiente'},
+  {id: 3, hora:'08:00', residente: 'Midsarres', medicamento: 'Enaladsal', dosis: '10mdsag', via: 'ordsaal', estado: 'Pedsandiente'},
+  {id: 4, hora:'08:00', residente: 'Micaela Torres', medicamento: 'Enalapril', dosis: '10mg', via: 'oral', estado: 'Pendiente'},
+  {id: 5, hora:'08:00', residente: 'Micaela Torres', medicamento: 'Enalapril', dosis: '10mg', via: 'oral', estado: 'Pendiente'},
+  {id: 6, hora:'08:00', residente: 'Micaela Torres', medicamento: 'Enalapril', dosis: '10mg', via: 'oral', estado: 'Pendiente'},
+  {id: 7, hora:'08:00', residente: 'Micaela Torres', medicamento: 'Enalapril', dosis: '10mg', via: 'oral', estado: 'Pendiente'},
+  {id: 8, hora:'08:00', residente: 'Micaela Torres', medicamento: 'Enalapril', dosis: '10mg', via: 'oral', estado: 'Pendiente'},
+  {id: 9, hora:'08:00', residente: 'Micaela Torres', medicamento: 'Enalapril', dosis: '10mg', via: 'oral', estado: 'Pendiente'},
+  {id: 11, hora:'08:00', residente: 'Micaela Torres', medicamento: 'Enalapril', dosis: '10mg', via: 'oral', estado: 'Pendiente'},
+  {id: 12, hora:'08:00', residente: 'Micaela Torres', medicamento: 'Enalapril', dosis: '10mg', via: 'oral', estado: 'Pendiente'},
+  {id: 13, hora:'08:00', residente: 'Micaela Torres', medicamento: 'Enalapril', dosis: '10mg', via: 'oral', estado: 'Pendiente'},
+  {id: 14, hora:'08:00', residente: 'Micaela Torres', medicamento: 'Enalapril', dosis: '10mg', via: 'oral', estado: 'Pendiente'},
+  {id: 15, hora:'08:00', residente: 'Micaela Torres', medicamento: 'Enalapril', dosis: '10mg', via: 'oral', estado: 'Pendiente'},
+  {id: 16, hora:'08:00', residente: 'Micaela Torres', medicamento: 'Enalapril', dosis: '10mg', via: 'oral', estado: 'Pendiente'},
+  {id: 17, hora:'08:00', residente: 'Micaela Torres', medicamento: 'Enalapril', dosis: '10mg', via: 'oral', estado: 'Pendiente'},
+]

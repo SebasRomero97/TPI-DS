@@ -25,9 +25,9 @@ const InventarioScreen = () => {
   const [visible, setVisible] = useState(false)
   const [visibleHistorial, setVisibleHistorial] = useState(false)
   
-  const {control, handleSubmit, formState: { errors }, } = useForm<FormData>()
+  const {control, handleSubmit, formState: { errors }, reset} = useForm<FormData>()
   
-  const onSubmit = handleSubmit((data) => console.log(data))
+  const onSubmit = handleSubmit((data) => {console.log(data); setVisible(false); reset()})
 
   const {formatDate} = useFormattedDate()
 
@@ -37,13 +37,13 @@ const InventarioScreen = () => {
     <View className='flex-1 w-[90%] m-auto my-8'>
       <UserCard />
       <ScrollView className='bg-white rounded-lg shadow-lg flex-1 p-10'>
-        <ThemedText>Gestión de Inventario</ThemedText>
+        <ThemedText type='miniTitulo'>Gestión de Inventario</ThemedText>
         <View>
           <BasicTable items={Medicamentos}/>
         </View>
         <View className='flex-row gap-3'>
-          <TouchableOpacity onPress={() => setVisible(true)} className='px-3  items-center justify-center rounded-lg flex-row bg-red-300'><Ionicons name='add-circle-outline' size={20} className='content-center justify-center items-center px-1'/><Text className='content-center text-base mb-[0.20rem] py-2'>Nuevo Medicamento</Text></TouchableOpacity>
-          <TouchableOpacity onPress={() => setVisibleHistorial(true)} className='px-3  items-center justify-center rounded-lg flex-row bg-red-300'><Ionicons name='reader-outline' size={20} className='content-center justify-center items-center px-1'/><Text className='content-center text-base mb-[0.20rem] py-2'>Ver Historial</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => setVisible(true)} className='px-3  items-center justify-center rounded-lg flex-row bg-[#2b27a8]'><Ionicons name='add-circle-outline' size={20} className='content-center text-white justify-center items-center px-1'/><Text className='content-center text-white text-base mb-[0.20rem] py-2'>Nuevo Medicamento</Text></TouchableOpacity>
+          <TouchableOpacity onPress={() => setVisibleHistorial(true)} className='px-3  items-center justify-center rounded-lg flex-row bg-red-300'><Ionicons name='reader-outline' size={20} className='content-center justify-center items-center px-1'/><Text className='content-center text-base mb-[0.20rem] py-2'>Ver Historial de Ingresos</Text></TouchableOpacity>
         </View>
 
 
@@ -133,7 +133,7 @@ const InventarioScreen = () => {
                     <input 
                       type="date" 
                       min={new Date().toISOString().split('T')[0]} 
-                      value={field.value?.toISOString().split('T')[0] ?? ''} 
+                      value={field.value?.toISOString().split('T')[0] ?? new Date().toISOString()} 
                       onChange={(e) => field.onChange(new Date(e.target.value))} 
                       className="p-2 border-[2px] rounded-lg" 
                     />
@@ -147,16 +147,11 @@ const InventarioScreen = () => {
             </View>
             <View className='w-[100%] mb-10 flex-row justify-between mt-20'>
               <TouchableOpacity onPress={()=>{setVisible(false)}} className='rounded-md bg-red-500 items-center ml-8 px-4'><Text className='text-lg color-white p-3 font-semibold'>Cancelar</Text></TouchableOpacity>
-              <TouchableOpacity 
-                onPress={()=>{
-                  onSubmit(); 
-                  if(!errors.cantidad && !errors.expiracion && !errors.nombre && !errors.presentacion){
-                    setVisible(false)
-                  }
-                }} 
+              <TouchableOpacity
+                onPress={()=>onSubmit()} 
                 className='rounded-md bg-[#2b27a8] items-center mr-8 px-4'
               >
-                <Text className='text-lg color-white p-3 font-semibold'>Ingresar</Text>
+                <Text className='text-lg color-white p-3 font-semibold'>Cargar</Text>
               </TouchableOpacity>
               
                       

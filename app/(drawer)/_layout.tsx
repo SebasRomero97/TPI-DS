@@ -56,8 +56,7 @@ export default function DrawerLayout() {
 
         {/* <Drawer.Screen name="dashBoard" options={{title: undefined}} /> */}
         <Drawer.Screen name="inventario" options={{title: 'Inventario'}} />
-        <Drawer.Screen name="residente" options={{title: 'Residente'}} />
-        <Drawer.Screen name="medicamentos" options={{title: 'Medicamentos'}} />
+        <Drawer.Screen name="alarmas" options={{title: 'Alarmas'}} />
         <Drawer.Screen name="diagnosticos" options={{title: 'Diagnosticos'}} />
         <Drawer.Screen name="tratamientos" options={{title: 'Tratamientos'}} />
         <Drawer.Screen name="dosis" options={{title: 'Dosis'}} />
