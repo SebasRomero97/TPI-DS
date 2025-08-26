@@ -44,18 +44,18 @@ const InicioSesionScreen = () => {
   
   return (
       <LinearGradient
-      className="flex-1 text-center items-center justify-center"
+      className="flex-1 text-center items-center justify-center overflow-scroll py-8"
       colors={['#b2afff', '#817fba']} // Claro a oscuro
       start={{ x: 1, y: 0 }} // Esquina superior derecha
       end={{ x: 0, y: 1 }}   // Esquina inferior izquierda
     >
     
 
-        <Text className='color-white text-6xl font-bold pb-10'>Vitales SW</Text>
+        <Text className='color-white text-6xl font-bold pb-5 py-10'>Vitales SW</Text>
 
 
 
-        <View className='bg-white rounded-lg shadow-md w-1/2 h-3/4 max-h-[476px] max-w-[486px]'> 
+        <View className='bg-white rounded-lg shadow-md w-1/2 h-3/4 h-[476px] w-[486px]'> 
           <View className='w-[75%] items-center mx-auto flex-1 justify-between'>
             
             <View className='mt-10'>
