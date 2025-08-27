@@ -1,3 +1,4 @@
+import AvisoModal from '@/components/AvisoModal'
 import BasicTable from '@/components/BasicTable'
 import BasicTableHistory from '@/components/BasicTableHistory'
 import BasicWebModal from '@/components/BasicWebModal'
@@ -24,10 +25,11 @@ type FormData = {
 const InventarioScreen = () => {
   const [visible, setVisible] = useState(false)
   const [visibleHistorial, setVisibleHistorial] = useState(false)
+  const [mostrarAviso, setMostrarAviso] = useState(false)
   
   const {control, handleSubmit, formState: { errors }, reset} = useForm<FormData>()
   
-  const onSubmit = handleSubmit((data) => {console.log(data); setVisible(false); reset()})
+  const onSubmit = handleSubmit((data) => {console.log(data); setVisible(false); setMostrarAviso(true) ;reset()})
 
   const {formatDate} = useFormattedDate()
 
@@ -85,7 +87,7 @@ const InventarioScreen = () => {
                   name='nombre'
                   render={({field}) => (
                     <TextInput
-                    className={`${errors.nombre ? 'border-red-600 outline-none' : 'border-gray-200'} p-2 bg-white border-[2px] ${field.value ? 'text-gray-950': 'text-gray-500'} rounded-lg`}
+                    className={`${errors.nombre ? ' border-red-600 outline-none' : 'border-gray-200'} p-2 bg-white border-[2px] ${field.value ? 'text-gray-950': 'text-gray-500'} rounded-lg`}
                     style={{fontFamily:'SpaceMono'}}
                         placeholder="Ingrese su Usuario"
                         onBlur={field.onBlur}
@@ -159,6 +161,8 @@ const InventarioScreen = () => {
           
           {/* </ScrollView> */}
         </BasicWebModal>
+
+        <AvisoModal visibleExterno={mostrarAviso} onAccept={()=> setMostrarAviso(false)} />
 
         <BasicWebModalHistory visibleExterno={visibleHistorial} onClose={()=> setVisibleHistorial(false)}>
           <ScrollView>

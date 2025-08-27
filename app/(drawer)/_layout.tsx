@@ -59,7 +59,7 @@ export default function DrawerLayout() {
         <Drawer.Screen name="alarmas" options={{title: 'Alarmas'}} />
         <Drawer.Screen name="diagnosticos" options={{title: 'Diagnosticos'}} />
         <Drawer.Screen name="tratamientos" options={{title: 'Tratamientos'}} />
-        <Drawer.Screen name="dosis" options={{title: 'Dosis'}} />
+        <Drawer.Screen name="dosis" options={{title: 'Dosis Administradas'}} />
         <Drawer.Screen name="consulta" options={{title: 'Consulta'}} />
 
         </Drawer>

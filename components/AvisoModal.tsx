@@ -1,14 +1,17 @@
 import React, { useEffect, useRef } from 'react';
-import { Animated, DimensionValue, Easing, Modal, View, ViewProps } from 'react-native';
+import { Animated, Easing, Modal, Text, TouchableOpacity, View, ViewProps } from 'react-native';
+import { ThemedText } from './ThemedText';
 
 interface Props extends ViewProps{
     visibleExterno: boolean
-    width?: DimensionValue
-    height?: DimensionValue
-    onClose?: () => void
+    width?: number,
+    height?: number,
+
+    onAccept?: () => void
+    onCancel?: () => void
 }
 
-const BasicWebModal = ( {children, visibleExterno, width = 640, height = 480, onClose}:Props ) => {
+const AvisoModal = ( {children, visibleExterno, height = 180, width = 540, onCancel, onAccept}:Props ) => {
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -46,6 +49,13 @@ const BasicWebModal = ( {children, visibleExterno, width = 640, height = 480, on
                 
             }}
             >
+              <View className='justify-center m-auto'>
+                <ThemedText>La accion se realizo correctamente</ThemedText>
+                <View className='justify-between pt-6 m-auto'>
+                  <TouchableOpacity onPress={onAccept} className='rounded-md bg-[#27a877] items-center px-8'><Text className='text-lg color-white p-3 font-semibold'>OK</Text></TouchableOpacity>
+                </View>
+        
+              </View>
             {children}
             {/* <Button title="Cerrar" onPress={onClose} /> */}
             </View>
@@ -55,4 +65,4 @@ const BasicWebModal = ( {children, visibleExterno, width = 640, height = 480, on
   )
 }
 
-export default BasicWebModal
+export default AvisoModal
