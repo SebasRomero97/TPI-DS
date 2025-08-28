@@ -22,10 +22,10 @@ const AlarmasScreen = () => {
 
   return (
     <View className='flex-1 w-[90%] m-auto my-8'>
-      <UserCard />
-        <View className='bg-white rounded-lg shadow-lg p-8 mb-4 h-1 justify-center'>
+      <UserCard titulo='Alarmas'/>
+        {/* <View className='bg-white rounded-lg shadow-lg p-8 mb-4 h-1 justify-center'>
           <ThemedText type='miniTitulo' className='pb-0 '>Alarmas</ThemedText>
-        </View>
+        </View> */}
         <View className='bg-white rounded-lg shadow-lg p-4 mb-4 h-[35vh]'>
           <ThemedText type='miniTitulo' className='pb-0'>Proximas Dosis</ThemedText>
             

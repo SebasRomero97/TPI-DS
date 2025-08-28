@@ -37,9 +37,8 @@ const InventarioScreen = () => {
 
   return (
     <View className='flex-1 w-[90%] m-auto my-8'>
-      <UserCard />
-      <ScrollView className='bg-white rounded-lg shadow-lg flex-1 p-10'>
-        <ThemedText type='miniTitulo'>Gestión de Inventario</ThemedText>
+      <UserCard titulo='Gestión de Inventario' />
+      <ScrollView className='bg-white rounded-lg shadow-lg flex-1 p-5'>
         <View>
           <BasicTable items={Medicamentos}/>
         </View>

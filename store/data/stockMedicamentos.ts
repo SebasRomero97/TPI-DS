@@ -164,7 +164,8 @@ export const Diagnosticos = [
 ];
 
 
-export const Dosis = [{"DNI":47981946,"Nombre":"Paul Landa","Edad":52,"Sexo":"Male","Medicamento":"Haloperidol decanoato","Dosis":714,"ViaDeAdministracion":"Sublingual","Fecha":"26-02-2024","Comentarios":"Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam."},
+export const Dosis = [
+{"DNI":47981946,"Nombre":"Paul Landa","Edad":52,"Sexo":"Male","Medicamento":"Haloperidol decanoato","Dosis":714,"ViaDeAdministracion":"Sublingual","Fecha":"26-02-2024","Comentarios":"Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam."},
 {"DNI":56777994,"Nombre":"Sig Saddington","Edad":83,"Sexo":"Male","Medicamento":"Ipratropio","Dosis":927,"ViaDeAdministracion":"Subcutánea","Fecha":"20-05-2024","Comentarios":"Vivamus vestibulum sagittis sapien."},
 {"DNI":54386367,"Nombre":"Emanuele Dudeney","Edad":63,"Sexo":"Male","Medicamento":"Ondansetrón","Dosis":935,"ViaDeAdministracion":"Oral","Fecha":"02-02-2024","Comentarios":"Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa."},
 {"DNI":44449630,"Nombre":"Christy Eckford","Edad":64,"Sexo":"Female","Medicamento":"Montelukast","Dosis":278,"ViaDeAdministracion":"Subcutánea","Fecha":"29-08-2023","Comentarios":"Donec vitae nisi."},
@@ -264,3 +265,248 @@ export const Dosis = [{"DNI":47981946,"Nombre":"Paul Landa","Edad":52,"Sexo":"Ma
 {"DNI":59711984,"Nombre":"Meryl Follin","Edad":101,"Sexo":"Female","Medicamento":"Sertralina","Dosis":863,"ViaDeAdministracion":"Oftálmica","Fecha":"30-07-2024","Comentarios":"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante."},
 {"DNI":51104333,"Nombre":"Emery Amsberger","Edad":113,"Sexo":"Male","Medicamento":"Amoxicilina","Dosis":552,"ViaDeAdministracion":"Subcutánea","Fecha":"26-11-2023","Comentarios":"Duis mattis egestas metus."},
 {"DNI":44733842,"Nombre":"Lilly Sokell","Edad":60,"Sexo":"Female","Medicamento":"Budesonida","Dosis":495,"ViaDeAdministracion":"Subcutánea","Fecha":"30-05-2024","Comentarios":"Curabitur convallis."}]
+
+
+export const Tratamientos = [
+  {
+    id: 1,
+    nombre: "Juan Pérez",
+    diagnostico: "Hipertensión arterial",
+    tratamiento: "Losartán 50mg diarios",
+    inicio: "2025-08-01",
+    finEstimado: "2025-08-31",
+    duracion: 30
+  },
+  {
+    id: 2,
+    nombre: "María González",
+    diagnostico: "Diabetes tipo 2",
+    tratamiento: "Metformina 850mg cada 12h",
+    inicio: "2025-07-15",
+    finEstimado: "2025-08-29",
+    duracion: 45
+  },
+  {
+    id: 3,
+    nombre: "Carlos López",
+    diagnostico: "Gripe común",
+    tratamiento: "Paracetamol 500mg cada 8h",
+    inicio: "2025-08-20",
+    finEstimado: "2025-08-27",
+    duracion: 7
+  },
+  {
+    id: 4,
+    nombre: "Ana Rodríguez",
+    diagnostico: "Asma bronquial",
+    tratamiento: "Salbutamol inhalador según crisis",
+    inicio: "2025-08-05",
+    finEstimado: "2025-09-04",
+    duracion: 30
+  },
+  {
+    id: 5,
+    nombre: "Pedro Martínez",
+    diagnostico: "Colesterol alto",
+    tratamiento: "Atorvastatina 20mg nocturna",
+    inicio: "2025-07-01",
+    finEstimado: "2025-09-01",
+    duracion: 62
+  },
+  {
+    id: 6,
+    nombre: "Laura Fernández",
+    diagnostico: "Alergia estacional",
+    tratamiento: "Loratadina 10mg diaria",
+    inicio: "2025-08-10",
+    finEstimado: "2025-08-30",
+    duracion: 20
+  },
+  {
+    id: 7,
+    nombre: "Miguel Torres",
+    diagnostico: "Fractura de radio",
+    tratamiento: "Inmovilización con yeso y analgésicos",
+    inicio: "2025-07-25",
+    finEstimado: "2025-09-05",
+    duracion: 42
+  },
+  {
+    id: 8,
+    nombre: "Sofía Morales",
+    diagnostico: "Migraña crónica",
+    tratamiento: "Sumatriptán según episodio",
+    inicio: "2025-08-12",
+    finEstimado: "2025-09-12",
+    duracion: 31
+  },
+  {
+    id: 9,
+    nombre: "Andrés Ramírez",
+    diagnostico: "Gastritis",
+    tratamiento: "Omeprazol 20mg diaria",
+    inicio: "2025-08-15",
+    finEstimado: "2025-08-30",
+    duracion: 15
+  },
+  {
+    id: 10,
+    nombre: "Valentina Herrera",
+    diagnostico: "COVID-19",
+    tratamiento: "Sintomático y reposo",
+    inicio: "2025-08-18",
+    finEstimado: "2025-08-28",
+    duracion: 10
+  },
+  {
+    id: 11,
+    nombre: "Lucía Vega",
+    diagnostico: "Anemia ferropénica",
+    tratamiento: "Hierro oral 100mg diaria",
+    inicio: "2025-07-20",
+    finEstimado: "2025-09-20",
+    duracion: 62
+  },
+  {
+    id: 12,
+    nombre: "Javier Díaz",
+    diagnostico: "Sinusitis",
+    tratamiento: "Amoxicilina 875mg cada 12h",
+    inicio: "2025-08-10",
+    finEstimado: "2025-08-24",
+    duracion: 14
+  },
+  {
+    id: 13,
+    nombre: "Camila Romero",
+    diagnostico: "Otitis media",
+    tratamiento: "Antibióticos orales 7 días",
+    inicio: "2025-08-21",
+    finEstimado: "2025-08-28",
+    duracion: 7
+  },
+  {
+    id: 14,
+    nombre: "Martín Silva",
+    diagnostico: "Lumbalgia",
+    tratamiento: "Relajantes musculares y fisioterapia",
+    inicio: "2025-08-05",
+    finEstimado: "2025-08-25",
+    duracion: 20
+  },
+  {
+    id: 15,
+    nombre: "Paula Suárez",
+    diagnostico: "Depresión leve",
+    tratamiento: "Sertralina 50mg diaria",
+    inicio: "2025-06-15",
+    finEstimado: "2025-09-15",
+    duracion: 92
+  },
+ {
+    id: 16,
+    nombre: "Juan Pérez",
+    diagnostico: "Hipertensión arterial",
+    tratamiento: "Losartán 50mg diarios",
+    inicio: "2025-08-01",
+    finEstimado: "2025-08-31",
+    duracion: 30
+  },
+  {
+    id: 17,
+    nombre: "María González",
+    diagnostico: "Diabetes tipo 2",
+    tratamiento: "Metformina 850mg cada 12h",
+    inicio: "2025-07-15",
+    finEstimado: "2025-08-29",
+    duracion: 45
+  },
+  {
+    id: 18,
+    nombre: "Carlos López",
+    diagnostico: "Gripe común",
+    tratamiento: "Paracetamol 500mg cada 8h",
+    inicio: "2025-08-20",
+    finEstimado: "2025-08-27",
+    duracion: 7
+  },
+  {
+    id: 19,
+    nombre: "Ana Rodríguez",
+    diagnostico: "Asma bronquial",
+    tratamiento: "Salbutamol inhalador según crisis",
+    inicio: "2025-08-05",
+    finEstimado: "2025-09-04",
+    duracion: 30
+  },
+  {
+    id: 20,
+    nombre: "Pedro Martínez",
+    diagnostico: "Colesterol alto",
+    tratamiento: "Atorvastatina 20mg nocturna",
+    inicio: "2025-07-01",
+    finEstimado: "2025-09-01",
+    duracion: 62
+  },
+  {
+    id: 21,
+    nombre: "Laura Fernández",
+    diagnostico: "Alergia estacional",
+    tratamiento: "Loratadina 10mg diaria",
+    inicio: "2025-08-10",
+    finEstimado: "2025-08-30",
+    duracion: 20
+  },
+  {
+    id: 22,
+    nombre: "Miguel Torres",
+    diagnostico: "Fractura de radio",
+    tratamiento: "Inmovilización con yeso y analgésicos",
+    inicio: "2025-07-25",
+    finEstimado: "2025-09-05",
+    duracion: 42
+  },
+  {
+    id: 23,
+    nombre: "Sofía Morales",
+    diagnostico: "Migraña crónica",
+    tratamiento: "Sumatriptán según episodio",
+    inicio: "2025-08-12",
+    finEstimado: "2025-09-12",
+    duracion: 31
+  },
+  {
+    id: 24,
+    nombre: "Andrés Ramírez",
+    diagnostico: "Gastritis",
+    tratamiento: "Omeprazol 20mg diaria",
+    inicio: "2025-08-15",
+    finEstimado: "2025-08-30",
+    duracion: 15
+  },
+  {
+    id: 25,
+    nombre: "Valentina Herrera", diagnostico: "COVID-19", tratamiento: "Sintomático y reposo", inicio: "2025-08-18", finEstimado: "2025-08-28", duracion: 10
+  },
+  {
+    id: 26,
+    nombre: "Lucía Vega", diagnostico: "Anemia ferropénica", tratamiento: "Hierro oral 100mg diaria", inicio: "2025-07-20", finEstimado: "2025-09-20", duracion: 62
+  },
+  {
+    id: 27,
+    nombre: "Javier Díaz", diagnostico: "Sinusitis", tratamiento: "Amoxicilina 875mg cada 12h", inicio: "2025-08-10", finEstimado: "2025-08-24", duracion: 14
+  },
+  {
+    id: 28,
+    nombre: "Camila Romero", diagnostico: "Otitis media", tratamiento: "Antibióticos orales 7 días", inicio: "2025-08-21", finEstimado: "2025-08-28", duracion: 7
+  },
+  {
+    id: 29,
+    nombre: "Martín Silva", diagnostico: "Lumbalgia", tratamiento: "Relajantes musculares y fisioterapia", inicio: "2025-08-05", finEstimado: "2025-08-25", duracion: 20
+  },
+  {
+    id: 30,
+    nombre: "Paula Suárez", diagnostico: "Depresión leve", tratamiento: "Sertralina 50mg diaria", inicio: "2025-06-15", finEstimado: "2025-09-15", duracion: 92
+  }
+
+];

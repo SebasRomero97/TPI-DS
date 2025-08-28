@@ -45,7 +45,7 @@ export default function DrawerLayout() {
       headerShown: false,
       drawerActiveTintColor: '#7672ff',
       drawerStyle: {
-        maxWidth: 240,
+        maxWidth: 230,
       },
       drawerLabelStyle: {
         fontFamily: 'SpaceMono',
