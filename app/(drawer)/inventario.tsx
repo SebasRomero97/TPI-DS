@@ -11,16 +11,24 @@ import { Ionicons } from '@expo/vector-icons'
 import React, { useState } from 'react'
 import { Controller, useForm } from 'react-hook-form'
 import { ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import Select from 'react-select'
 
 
 
 type FormData = {
-  nombre: string
+  nombre: {value: string, label: string}
   presentacion: string
   cantidad: string
   expiracion: Date
 
 }
+
+const valores = Historial.map((item) => {
+  return{
+    value: item.name,
+    label: item.name
+  }
+})
 
 const InventarioScreen = () => {
   const [visible, setVisible] = useState(false)
@@ -55,7 +63,7 @@ const InventarioScreen = () => {
               
 
 
-              <View className=' w-[40 %] mx-6'>
+              <View className=' w-[40%] mx-6'>
 
 
                 <ThemedText className='font-medium text-lg'>Presentación</ThemedText>
@@ -85,17 +93,22 @@ const InventarioScreen = () => {
                   rules={{required: true}}
                   name='nombre'
                   render={({field}) => (
-                    <TextInput
-                    className={`${errors.nombre ? ' border-red-600 outline-none' : 'border-gray-200'} p-2 bg-white border-[2px] ${field.value ? 'text-gray-950': 'text-gray-500'} rounded-lg`}
-                    style={{fontFamily:'SpaceMono'}}
-                        placeholder="Ingrese su Usuario"
-                        onBlur={field.onBlur}
-                        spellCheck={false}
-                        onChangeText={field.onChange}
-                        value={field.value ?? ''}
-                        />
-                      )}
-                      />
+                    // <TextInput
+                    // className={`${errors.nombre ? ' border-red-600 outline-none' : 'border-gray-200'} p-2 bg-white border-[2px] ${field.value ? 'text-gray-950': 'text-gray-500'} rounded-lg`}
+                    // style={{fontFamily:'SpaceMono'}}
+                    //     placeholder="Ingrese su Usuario"
+                    //     onBlur={field.onBlur}
+                    //     spellCheck={false}
+                    //     onChangeText={field.onChange}
+                    //     value={field.value ?? ''}
+                    // />
+                    <Select {...field}
+                      options={valores}
+                      className={`${errors.nombre ? 'z-10 border-red-600 outline-none' : 'border-gray-200'} p-2 bg-white border-[2px]  rounded-lg`}
+
+                    />
+                  )}
+                />
                 {errors.nombre && ( <Text className='text-red-600'>Este campo es obligatorio</Text> )}
               
               
@@ -146,13 +159,13 @@ const InventarioScreen = () => {
 
 
             </View>
-            <View className='w-[100%] mb-10 flex-row justify-between mt-20'>
-              <TouchableOpacity onPress={()=>{setVisible(false)}} className='rounded-md bg-red-500 items-center ml-8 px-4'><Text className='text-lg color-white p-3 font-semibold'>Cancelar</Text></TouchableOpacity>
+            <View className='w-[100%] mb-10 flex-row justify-end mt-20'>
+              <TouchableOpacity onPress={()=>{setVisible(false)}} className='z-0 mr-8 rounded-md bg-red-500 items-center ml-8 px-4'><Text className='text-lg color-white p-3 font-semibold'>Cancelar</Text></TouchableOpacity>
               <TouchableOpacity
                 onPress={()=>onSubmit()} 
                 className='rounded-md bg-[#2b27a8] items-center mr-8 px-4'
               >
-                <Text className='text-lg color-white p-3 font-semibold'>Cargar</Text>
+                <Text className='text-lg color-white p-3 font-semibold '>Cargar</Text>
               </TouchableOpacity>
               
                       

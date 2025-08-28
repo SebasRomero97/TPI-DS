@@ -5,6 +5,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { Text, TextInput as TextInputReact, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { DataTable, TextInput } from 'react-native-paper';
+import Select from 'react-select';
 import AvisoModal from './AvisoModal';
 import BasicWebModal from './BasicWebModal';
 import { ThemedText } from './ThemedText';
@@ -24,14 +25,21 @@ type User = {
 type FormData = {
   dni: string,
   observaciones: string
-  diagnosticoPrincipal: string
+  diagnosticoPrincipal: {value: string, label: string}
   fecha: string
 }
-
-
 interface Props {
   items?: User[];
 }
+
+
+
+const valores = Diagnosticos.map((item) => {
+  return {
+    value: item.diagnostico,
+    label: item.diagnostico
+  }
+})
 
 
 
@@ -123,21 +131,22 @@ const BasicTableDiagnosticos = ({ items = initialValues }: Props) => {
                   rules={{required: true}}
                   name='diagnosticoPrincipal'
                   render={({field}) => (
-                    <TextInputReact {...field}
-                    // style={{
-                    //   backgroundColor:'white',
-                    //   padding: '0.5rem',
-                    //   outline: '2px solid transparent',
-                    //   outlineOffset: '2px',
-                    //   borderColor: '#dc2626',
-                    //   borderColor: '#e5e7eb',
-                    //   borderWidth: '2px',
-                    //   borderRadius: '0.5rem'
-                    // }}
-                    className={`${errors.diagnosticoPrincipal ? 'border-red-600 outline-none' : 'border-gray-200'} m-2 p-2 w-[40%] bg-white border-[2px] rounded-lg`}                    
-                    />
+                    <Select {...field}
+                     options={valores} 
+                     className={`${errors.diagnosticoPrincipal ? 'border-red-600 outline-none' : 'border-gray-200'} m-2 p-2 w-[40%] bg-white border-[2px] rounded-lg`}
+                      
+                    >
+                      
+                    </Select>
                   )}
                 />{errors.diagnosticoPrincipal && ( <Text className='text-red-600'>Ingrese un Diagnostico</Text> )}
+                
+                
+                                       
+                
+                
+                
+                
                 <ThemedText className='mt-4'>Observaciones: </ThemedText>
                 <Controller 
                   control={control}
