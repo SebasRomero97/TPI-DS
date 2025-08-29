@@ -1,11 +1,12 @@
 import { Tratamientos } from '@/store/data/stockMedicamentos';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Controller, useForm } from 'react-hook-form';
+import { Text, TextInput as TextInputReact, TouchableOpacity, View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { DataTable, TextInput } from 'react-native-paper';
+import { Checkbox, DataTable, TextInput } from 'react-native-paper';
 import AvisoModal from './AvisoModal';
+import BasicTableNuevoTratamiento from './BasicTableNuevoTratamiento';
 import BasicWebModal from './BasicWebModal';
 import { ThemedText } from './ThemedText';
 import { useSortedData } from './useSortDataForDataTable';
@@ -23,11 +24,26 @@ type User = {
 
 };
 
+type User2 = {
+    nombre: string;
+    dni: string;
+    diagnostico: string;
+    fecha: string;
+    observaciones: string;
+};
+
 type FormData = {
-  dni: string,
-  observaciones: string
-  diagnosticoPrincipal: string
-  fecha: string
+    nombre: string;
+    dni: string;
+    diagnostico: string;
+    fecha: string;
+    observaciones: string;
+    nombreTratamiento: string;
+    dosis: string;
+    frecuencia: string;
+    duracionDefinida: boolean;
+    duracion?: string 
+    observacionesTratamiento: string;
 }
 
 
@@ -37,10 +53,17 @@ interface Props {
 
 
 
-const BasicTableDiagnosticos = ({ items = initialValues }: Props) => {
+const BasicTableTratamientos = ({ items = initialValues }: Props) => {
+  const [pacienteSeleccionado, setPacienteSeleccionado] = useState<User2>({
+    nombre: '',
+    dni: '',
+    diagnostico: '',
+    fecha: '',
+    observaciones: '',
+})
 
   const {control, handleSubmit, formState:{errors}, reset} = useForm<FormData>()
-  const onSubmit = handleSubmit((data:FormData) => {console.log(data); setCargarDiagnosticoVisible(false); reset(); setMostrarAviso(true)})
+  const onSubmit = handleSubmit((data:FormData) => {data = {...pacienteSeleccionado}; console.log(data); setCargarDiagnosticoVisible(false); reset(); setMostrarAviso(true)})
 
   const [cargarDiagnosticoVisible, setCargarDiagnosticoVisible] = useState(false);
   const [mostrarAviso, setMostrarAviso] = useState(false)
@@ -71,6 +94,10 @@ const BasicTableDiagnosticos = ({ items = initialValues }: Props) => {
     setBandera(false) 
   };
 
+  const mostrarPacienteElegido = (paciente:User2) => {
+    setPacienteSeleccionado(paciente)
+    console.log('desde el padre:', pacienteSeleccionado)
+  }
 
   return (
     <View>
@@ -90,9 +117,82 @@ const BasicTableDiagnosticos = ({ items = initialValues }: Props) => {
           <TouchableOpacity onPress={() => setCargarDiagnosticoVisible(true)} className='px-3 py-2 ml-4 mt-[6px] items-center justify-center rounded-lg flex-row bg-[#2b27a8]'><Ionicons name='add-circle-outline' size={20} className='content-center text-white justify-center items-center px-1'/><Text className='content-center text-white text-base mb-[0.20rem]'>Nuevo Tratamiento</Text></TouchableOpacity>
       </View>
           <BasicWebModal  visibleExterno={cargarDiagnosticoVisible} height={'80%'} width={'50%'} >
-            <ThemedText type='title'>Paciente</ThemedText>
             <ScrollView>
+              <ThemedText type='title' className='mb-4'>Buscar Paciente</ThemedText>
+              <BasicTableNuevoTratamiento pacienteSeleccionado={mostrarPacienteElegido}/>
               
+              <ThemedText type='title' className='mt-8 mb-4'>Paciente Seleccionado:</ThemedText>
+              <View className='flex-row gap-2'>
+                <ThemedText type='subtitle'>DNI:</ThemedText><ThemedText>{pacienteSeleccionado.dni ?? ''}</ThemedText>
+              </View>
+              <View className='flex-row gap-2'>
+                <ThemedText type='subtitle'>Nombre: </ThemedText><ThemedText>{pacienteSeleccionado.nombre ?? ''}</ThemedText>
+              </View>
+              <View className='flex-row gap-2'>
+                <ThemedText type='subtitle'>Diagnostico: </ThemedText><ThemedText>{pacienteSeleccionado.diagnostico ?? ''}</ThemedText>
+              </View>
+              <View className='flex-row gap-2'>
+                <ThemedText type='subtitle'>Fecha de Diagnostico: </ThemedText><ThemedText>{pacienteSeleccionado.fecha ?? ''}</ThemedText>
+              </View>
+              <View className='flex-row gap-2'>
+                <ThemedText type='subtitle'>Observaciones: </ThemedText><ThemedText>{pacienteSeleccionado.observaciones ?? ''}</ThemedText>
+              </View>
+
+
+              <View> 
+                {errors.nombreTratamiento && ( <Text className='text-red-600 ml-2'>Ingrese un Nombre</Text> )}
+                <Controller 
+                  control={control}
+                  rules={{required: true}}
+                  name='nombreTratamiento'
+                  render={({field}) => (
+                    <TextInputReact {...field} 
+                      placeholder='Ingrese un Nombre'
+                      className={`${errors.nombreTratamiento ? 'border-red-600 outline-none' : 'border-gray-200'} m-2 mt-0 p-2 w-[40%] ${field.value ? 'text-gray-950': 'text-gray-500'} bg-white border-[2px] rounded-lg`}                    
+
+                    />
+                  )}
+                />
+                {errors.dosis && ( <Text className='text-red-600 ml-2'>Ingrese un Numero</Text> )}
+                <Controller 
+                  control={control}
+                  rules={{required: true, pattern: /^[0-9]+$/ }}
+                  name='dosis'
+                  render={({field}) => (
+                    <TextInputReact {...field}
+                      className={`${errors.dosis ? 'border-red-600 outline-none' : 'border-gray-200'} m-2 p-2 mt-0 w-[40%] ${field.value ? 'text-gray-950': 'text-gray-500'} bg-white border-[2px] rounded-lg`}                    
+                      placeholder='Ingrese una cantidad'
+                    />
+                  )}
+                />
+                {errors.frecuencia && ( <Text className='text-red-600 ml-2'>Ingrese un Numero</Text> )}
+                <Controller 
+                  control={control}
+                  rules={{required: true, pattern: /^[0-9]+$/ }}
+                  name='frecuencia'
+                  render={({field}) => (
+                    <TextInputReact {...field}
+                      className={`${errors.frecuencia ? 'border-red-600 outline-none' : 'border-gray-200'} m-2 p-2 mt-0 w-[40%] ${field.value ? 'text-gray-950': 'text-gray-500'} bg-white border-[2px] rounded-lg`}                    
+                      placeholder='Ingrese una cantidad'
+                    />
+                  )}
+                />
+                {errors.duracionDefinida && ( <Text className='text-red-600 ml-2'>Ingrese un Numero</Text> )}
+                <Controller 
+                  control={control}
+                  rules={{required: true, pattern: /^[0-9]+$/ }}
+                  name='duracionDefinida'
+                  render={({field}) => (
+                    <Checkbox {...field}
+                    status='unchecked'
+                      // className={`${errors.frecuencia ? 'border-red-600 outline-none' : 'border-gray-200'} m-2 p-2 mt-0 w-[40%] ${field.value ? 'text-gray-950': 'text-gray-500'} bg-white border-[2px] rounded-lg`}                    
+                      // placeholder='Ingrese una cantidad'
+                    />
+                  )}
+                />
+              </View>
+
+
               
             </ScrollView>
             {/* <TouchableOpacity onPress={onSubmit}> <Text>d;slakdl;sakdl;as</Text></TouchableOpacity> */}
@@ -175,6 +275,6 @@ const BasicTableDiagnosticos = ({ items = initialValues }: Props) => {
   );
 };
 
-export default BasicTableDiagnosticos;
+export default BasicTableTratamientos;
 
 

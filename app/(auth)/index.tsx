@@ -66,6 +66,7 @@ const InicioSesionScreen = () => {
             <View className='justify-start w-[100%]'>
               <View className='mb-4'>
                 <ThemedText className='font-medium text-lg'>Nombre de Usuario</ThemedText>
+                {errors.userName && ( <Text className='text-red-600 pl-1'>El usuario es obligatorio</Text> )}
                 <Controller
                   control={control}
                   rules={{
@@ -73,7 +74,7 @@ const InicioSesionScreen = () => {
                   }}
                   render={({ field: { onChange, onBlur, value } }) => (
                     <TextInput
-                      className={`${errors.userName ? 'border-red-600' : 'border-gray-200'} p-2 border-[2px] ${value ? 'text-gray-950': 'text-gray-500'} rounded-lg`}
+                      className={`${errors.userName ? 'border-red-600' : 'border-gray-200'} p-2 mt-0 border-[2px] ${value ? 'text-gray-950': 'text-gray-500'} rounded-lg`}
                       style={{fontFamily:'SpaceMono'}}
                       placeholder="Ingrese su Usuario"
                       onBlur={onBlur}
@@ -84,14 +85,12 @@ const InicioSesionScreen = () => {
                   )}
                   name="userName"
                 />
-                {errors.userName && (
-                  <Text className='text-red-600'>El usuario es obligatorio</Text>
-                )}
               </View>
 
 
               <View className='mb-4 pb-4'>
                 <ThemedText className='font-medium text-lg'>Contraseña</ThemedText>
+                {errors.password && ( <Text className='text-red-600'>La contraseña es obligatoria</Text> )}
                 <Controller
                   control={control}
                   rules={{
@@ -100,7 +99,7 @@ const InicioSesionScreen = () => {
                   }}
                   render={({ field: { onChange, onBlur, value } }) => (
                     <TextInput
-                      className={`${errors.password ? 'border-red-600' : 'border-gray-200'} p-2 border-[2px] ${value ? 'text-gray-950': 'text-gray-500'} rounded-lg`}
+                      className={`${errors.password ? 'border-red-600' : 'border-gray-200'} mt-0 p-2 border-[2px] ${value ? 'text-gray-950': 'text-gray-500'} rounded-lg`}
                       style={{fontFamily:'SpaceMono'}}
                       placeholder="Ingrese su Contraseña"
                       onBlur={onBlur}
@@ -111,9 +110,6 @@ const InicioSesionScreen = () => {
                   )}
                   name="password"
                 />
-                {errors.password && (
-                  <Text className='text-red-600'>La contraseña es obligatoria</Text>
-                )}
 
               </View>
             </View>

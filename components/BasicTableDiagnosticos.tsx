@@ -100,6 +100,7 @@ const BasicTableDiagnosticos = ({ items = initialValues }: Props) => {
             <ScrollView>
               
               <ThemedText className='mt-4'>Ingrese un DNI: </ThemedText>
+              {errors.dni && ( <Text className='text-red-600 ml-2'>Ingrese un DNI</Text> )}
               <Controller 
                 control={control}
                 rules={{required: true, pattern: /^\d{7,8}$/}}
@@ -116,16 +117,17 @@ const BasicTableDiagnosticos = ({ items = initialValues }: Props) => {
                   //   borderWidth: '2px',
                   //   borderRadius: '0.5rem'
                   // }}
-                  className={`${errors.dni ? 'border-red-600 outline-none' : 'border-gray-200'} m-2 p-2 w-[40%] bg-white border-[2px] rounded-lg`}                    
+                  className={`${errors.dni ? 'border-red-600 outline-none' : 'border-gray-200'} m-2 p-2 mt-0 w-[40%] bg-white border-[2px] rounded-lg`}                    
                   />
                 )}
-              />{errors.dni && ( <Text className='text-red-600'>Ingrese un DNI</Text> )}
+              />
               
               
               <View className=''>
                 <ThemedText type='title'>Diagnostico</ThemedText>
               
                 <ThemedText className='mt-4'>Diagnostico: </ThemedText>
+                {errors.diagnosticoPrincipal && ( <Text className='text-red-600 ml-2'>Ingrese un Diagnostico</Text> )}
                 <Controller 
                   control={control}
                   rules={{required: true}}
@@ -133,13 +135,13 @@ const BasicTableDiagnosticos = ({ items = initialValues }: Props) => {
                   render={({field}) => (
                     <Select {...field}
                      options={valores} 
-                     className={`${errors.diagnosticoPrincipal ? 'border-red-600 outline-none' : 'border-gray-200'} m-2 p-2 w-[40%] bg-white border-[2px] rounded-lg`}
+                     className={`${errors.diagnosticoPrincipal ? 'border-red-600 outline-none' : 'border-gray-200'} m-2 p-2 mt-0 w-[40%] bg-white border-[2px] rounded-lg`}
                       
                     >
                       
                     </Select>
                   )}
-                />{errors.diagnosticoPrincipal && ( <Text className='text-red-600'>Ingrese un Diagnostico</Text> )}
+                />
                 
                 
                                        

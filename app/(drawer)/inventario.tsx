@@ -59,7 +59,7 @@ const InventarioScreen = () => {
         <BasicWebModal visibleExterno={visible} onClose={() => setVisible(false)}>
           {/* <ScrollView className=''>  */}
             <ThemedText className='items-center color-[#7672ff] text-2xl font-semibold py-8'>Cargar Medicamento</ThemedText>
-            <View className='flex-row justify-between'>
+            <View className='flex-row justify-between z-50'>
               
 
 
@@ -67,13 +67,14 @@ const InventarioScreen = () => {
 
 
                 <ThemedText className='font-medium text-lg'>Presentación</ThemedText>
+                {errors.presentacion && ( <Text className='text-red-600'>Este campo es obligatorio</Text> )}
                 <Controller 
                   control={control}
                   rules={{required: true}}
                   name='presentacion'
                   render={({field}) => (
                     <select {...field}
-                    className={`${errors.presentacion ? 'border-red-600 outline-none' : 'border-gray-200'} p-2 bg-white border-[2px] rounded-lg`}
+                    className={`${errors.presentacion ? 'border-red-600 outline-none' : 'border-gray-200'} mt-0 p-2 bg-white border-[2px] rounded-lg`}
                     
                     >
                       <option value=''>Seleccionar...</option>
@@ -85,31 +86,23 @@ const InventarioScreen = () => {
                     </select>
                   )}
                   />
-                {errors.presentacion && ( <Text className='text-red-600'>Este campo es obligatorio</Text> )}
               
                 <ThemedText className='font-medium text-lg mt-8'>Nombre</ThemedText>
+                {errors.nombre && ( <Text className='text-red-600'>Este campo es obligatorio</Text> )}
                 <Controller 
                   control={control}
                   rules={{required: true}}
                   name='nombre'
                   render={({field}) => (
-                    // <TextInput
-                    // className={`${errors.nombre ? ' border-red-600 outline-none' : 'border-gray-200'} p-2 bg-white border-[2px] ${field.value ? 'text-gray-950': 'text-gray-500'} rounded-lg`}
-                    // style={{fontFamily:'SpaceMono'}}
-                    //     placeholder="Ingrese su Usuario"
-                    //     onBlur={field.onBlur}
-                    //     spellCheck={false}
-                    //     onChangeText={field.onChange}
-                    //     value={field.value ?? ''}
-                    // />
                     <Select {...field}
                       options={valores}
-                      className={`${errors.nombre ? 'z-10 border-red-600 outline-none' : 'border-gray-200'} p-2 bg-white border-[2px]  rounded-lg`}
+                      className={`${errors.nombre ? 'z-10 border-red-600 outline-none' : 'border-gray-200'} mt-0 p-2 bg-white border-[2px]  rounded-lg`}
 
-                    />
+                    >
+
+                    </Select>
                   )}
                 />
-                {errors.nombre && ( <Text className='text-red-600'>Este campo es obligatorio</Text> )}
               
               
               </View>
@@ -120,13 +113,14 @@ const InventarioScreen = () => {
 
 
                 <ThemedText className='font-medium text-lg'>Cantidad</ThemedText>
+                {errors.cantidad && ( <Text className='text-red-600'>Ingrese una cantidad numerica</Text> )}
                 <Controller 
                   control={control}
                   rules={{required: true, pattern: /^[0-9]+$/ }}
                   name='cantidad'
                   render={({field}) => (
                     <TextInput
-                    className={`${errors.cantidad ? 'border-red-600 outline-none' : 'border-gray-200'} p-2 bg-white border-[2px] ${field.value ? 'text-gray-950': 'text-gray-500'} rounded-lg`}
+                    className={`${errors.cantidad ? 'border-red-600 outline-none' : 'border-gray-200'} p-2 mt-0 bg-white border-[2px] ${field.value ? 'text-gray-950': 'text-gray-500'} rounded-lg`}
                     style={{fontFamily:'SpaceMono'}}
                         placeholder="Ingrese su Usuario"
                         onBlur={field.onBlur}
@@ -136,9 +130,9 @@ const InventarioScreen = () => {
                         />
                       )}
                       />
-                {errors.cantidad && ( <Text className='text-red-600'>Ingrese una cantidad numerica</Text> )}
 
                 <ThemedText className='font-medium text-lg mt-8'>Fecha de Expiracion</ThemedText>
+                {errors.expiracion && ( <Text className='text-red-600'>Ingrese una fecha</Text> )}
                 <Controller
                   name="expiracion"
                   control={control}
@@ -154,7 +148,6 @@ const InventarioScreen = () => {
 
                   )}
                 />
-                {errors.expiracion && ( <Text className='text-red-600'>Ingrese una fecha</Text> )}
               </View>
 
 
